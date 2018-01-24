@@ -1,64 +1,30 @@
 # -*- coding: utf-8 -*-
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import Select
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import NoAlertPresentException
+from selenium import selenium
 import unittest, time, re
 
-class UntitledTestCase(unittest.TestCase):
+class Python_testcases_RC(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Firefox()
-        self.base_url = "https://www.katalon.com/"
-        self.driver.implicitly_wait(30)
         self.verificationErrors = []
-        self.accept_next_alert = True
+        self.selenium = selenium("localhost", 4444, "*chrome", "http://146.148.54.18:5000/login")
+        self.selenium.start()
     
-    def test_untitled_test_case(self):
-        driver = self.driver
-        driver.get("http://35.225.50.59/login")
-        driver.find_element_by_link_text("I need an account").click()
-        driver.find_element_by_id("username").click()
-        driver.find_element_by_id("username").clear()
-        driver.find_element_by_id("username").send_keys("alex")
-        driver.find_element_by_id("email").clear()
-        driver.find_element_by_id("email").send_keys("alex@test.com")
-        driver.find_element_by_id("display-name").clear()
-        driver.find_element_by_id("display-name").send_keys("Alex")
-        driver.find_element_by_id("first-name").clear()
-        driver.find_element_by_id("first-name").send_keys("Alex")
-        driver.find_element_by_id("last-name").clear()
-        driver.find_element_by_id("last-name").send_keys("Ch")
-        driver.find_element_by_id("password").clear()
-        driver.find_element_by_id("password").send_keys("12345678")
-        driver.find_element_by_id("password-confirm").clear()
-        driver.find_element_by_id("password-confirm").send_keys("12345678")
-        driver.find_element_by_id("submit").click()
-    
-    def is_element_present(self, how, what):
-        try: self.driver.find_element(by=how, value=what)
-        except NoSuchElementException as e: return False
-        return True
-    
-    def is_alert_present(self):
-        try: self.driver.switch_to_alert()
-        except NoAlertPresentException as e: return False
-        return True
-    
-    def close_alert_and_get_its_text(self):
-        try:
-            alert = self.driver.switch_to_alert()
-            alert_text = alert.text
-            if self.accept_next_alert:
-                alert.accept()
-            else:
-                alert.dismiss()
-            return alert_text
-        finally: self.accept_next_alert = True
+    def test_python_testcases__r_c(self):
+        sel = self.selenium
+        sel.open("/login")
+        time.sleep(2)
+        sel.click("link=Account for External User")
+        time = sel.get_eval("(new Date().getHours()+new Date().getMinutes()+ new Date().getSeconds()+Math.floor(Math.random()*11111)+new Date().getSeconds())")
+        sel.type("id=username", "demouser" + time)
+        sel.type("id=email", "demouser" + time + "@wipro.com")
+        sel.type("id=display-name", "demouser" + time)
+        sel.type("id=first-name", "firstname" + time)
+        sel.type("id=last-name", "lastname" + time)
+        sel.type("id=password", "wipro@123")
+        sel.type("id=password-confirm", "wipro@123")
+        sel.click("id=submit")
     
     def tearDown(self):
-        self.driver.quit()
+        self.selenium.stop()
         self.assertEqual([], self.verificationErrors)
 
 if __name__ == "__main__":
