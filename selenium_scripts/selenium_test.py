@@ -22,7 +22,7 @@ class ChatAutomation(unittest.TestCase):
         # ERROR: Caught exception [ERROR: Unsupported command [getEval |  | ]]
         driver.find_element_by_id("username").click()
         driver.find_element_by_id("username").clear()
-        driver.find_element_by_id("username").send_keys("demousr", time)
+        driver.find_element_by_id("username").send_keys("demousr"+time)
         driver.find_element_by_id("email").click()
         driver.find_element_by_id("email").clear()
         driver.find_element_by_id("email").send_keys("demousr", time, "@wipro.com")
