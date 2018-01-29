@@ -5,7 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
-import unittest, time, re
+import unittest, re
 
 class ChatAutomation(unittest.TestCase):
     def setUp(self):
@@ -20,12 +20,13 @@ class ChatAutomation(unittest.TestCase):
         driver.get("http://35.224.112.117:5000/login#")
         driver.find_element_by_link_text("Account for External User").click()
         # ERROR: Caught exception [ERROR: Unsupported command [getEval |  | ]]
+        time = driver.get_eval("(new Date().getHours()+new Date().getMinutes()+ new Date().getSeconds()+Math.floor(Math.random()*11111)+new Date().getSeconds())")
         driver.find_element_by_id("username").click()
         driver.find_element_by_id("username").clear()
-        driver.find_element_by_id("username").send_keys('demousr'+time)
+        driver.find_element_by_id("username").send_keys('demousr'+ time)
         driver.find_element_by_id("email").click()
         driver.find_element_by_id("email").clear()
-        driver.find_element_by_id("email").send_keys('demousr'+ time+ '@wipro.com')
+        driver.find_element_by_id("email").send_keys('demousr'+ time + '@wipro.com')
         driver.find_element_by_id("display-name").click()
         driver.find_element_by_id("display-name").clear()
         driver.find_element_by_id("display-name").send_keys("demousr", time)
