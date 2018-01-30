@@ -46,14 +46,13 @@ class ChatAutomation(unittest.TestCase):
         driver.find_element_by_id("password-confirm").click()
         driver.find_element_by_id("password-confirm").clear()
         driver.find_element_by_id("password-confirm").send_keys("wipro@123")
-        WebElement submitbtn = (new WebDriverWait(driver,50)).until(ExpectedConditions.elementToBeClickable(By.id("submit")));
-		submitbtn.click();
-        #driver.find_element_by_id("submit").click()
+        driver.find_element_by_id("submit").click()
         #WebDriverWait wait = new WebDriverWait(driver, 10);
-		
+		WebElement confirmbtn = (new WebDriverWait(driver,80)).until(ExpectedConditions.elementToBeClickable(By.cssselector("button.confirm")));
+		confirmbtn.click();
         #driver.implicitly_wait(150)
         #time.sleep(50)
-        driver.find_element_by_css_selector("button.confirm").click()
+        #driver.find_element_by_css_selector("button.confirm").click()
         # ERROR: Caught exception [unknown command []]
     
     def is_element_present(self, how, what):
