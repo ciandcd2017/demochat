@@ -5,8 +5,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
-from selenium.support.ui import ExpectedConditions
-from selenium.support.ui import WebDriverWait
+#from selenium.support.ui import ExpectedConditions
+#from selenium.support.ui import WebDriverWait
 import unittest,time,re
 
 class ChatAutomation(unittest.TestCase):
@@ -47,10 +47,11 @@ class ChatAutomation(unittest.TestCase):
         driver.find_element_by_id("password-confirm").clear()
         driver.find_element_by_id("password-confirm").send_keys("wipro@123")
         driver.find_element_by_id("submit").click()
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-		WebElement confirmbtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssselector("button.confirm")));
-		confirmbtn.click();
-        #driver.find_element_by_css_selector("button.confirm").click()
+        #WebDriverWait wait = new WebDriverWait(driver, 10);
+		#WebElement confirmbtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssselector("button.confirm")));
+		#confirmbtn.click();
+        Thread.sleep(10000)
+        driver.find_element_by_css_selector("button.confirm").click()
         # ERROR: Caught exception [unknown command []]
     
     def is_element_present(self, how, what):
