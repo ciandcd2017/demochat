@@ -50,8 +50,8 @@ class ChatAutomation(unittest.TestCase):
         #WebDriverWait wait = new WebDriverWait(driver, 10);
 		#WebElement confirmbtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssselector("button.confirm")));
 		#confirmbtn.click();
-        driver.implicitly_wait(150)
-        #time.sleep(500)
+        #driver.implicitly_wait(150)
+        time.sleep(50)
         driver.find_element_by_css_selector("button.confirm").click()
         # ERROR: Caught exception [unknown command []]
     
