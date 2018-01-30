@@ -5,6 +5,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
+from selenium.support.ui import ExpectedConditions
+from selenium.support.ui import WebDriverWait
 import unittest,time,re
 
 class ChatAutomation(unittest.TestCase):
